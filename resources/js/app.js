@@ -20,6 +20,7 @@ window.Vue = require('vue');
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
 Vue.component('game', require('./components/Game.vue').default);
+Vue.component('game-child', require('./components/GameChild.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
