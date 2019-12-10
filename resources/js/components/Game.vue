@@ -43,7 +43,7 @@ export default {
             }
         },
         nextRound() {
-
+            console.log('Game has not ended yet');
         },
         endGame() {
             console.log('Game has ended');

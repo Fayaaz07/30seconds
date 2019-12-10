@@ -141,7 +141,9 @@ __webpack_require__.r(__webpack_exports__);
         this.nextRound();
       }
     },
-    nextRound: function nextRound() {},
+    nextRound: function nextRound() {
+      console.log('Game has not ended yet');
+    },
     endGame: function endGame() {
       console.log('Game has ended');
     }
