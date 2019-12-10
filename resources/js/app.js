@@ -1,8 +1,14 @@
+import Vue from 'vue'
+import VueRouter from 'vue-router'
+import routes from './routes'
+import App from './views/App'
 
-window.Vue = require('vue');
+Vue.use(VueRouter);
 
-Vue.component('game', require('./components/Game.vue').default);
-
-const app = new Vue({
+let app = new Vue({
     el: '#game',
-});
+    router: new VueRouter(routes),
+    components: {
+        App
+    },
+})
