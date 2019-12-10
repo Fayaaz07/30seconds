@@ -1,19 +1,5 @@
 <template>
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-8">
-                <div class="card">
-                    <div class="card-header">
-                        Parent Component
-                    </div>
-
-                    <div class="card-body">
-                        I'm an example parent component.
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+    <start-round :currentTurn="currentTurn"></start-round>
 </template>
 
 <script>
@@ -32,10 +18,13 @@ export default {
             },
             pointsToWin: 30, //One right answer = one point
             timePerRound: 30, //Time in seconds
-            turns: 1,
+            currentTurn: null,
         }
     },
     methods: {
+        startGame() {
+            this.currentTurn = teams.team1;
+        },
         updatePoints(team, points) {
             if(this.teams.team1.name === team.name) {
                 this.teams.team1.currentPoints += points;
@@ -50,12 +39,20 @@ export default {
             if(this.teams.team1.currentPoints >= this.pointsToWin || this.teams.team2.currentPoints >= this.pointsToWin) {
                 this.endGame();
             } else {
-                console.log('Game is not over yet');
+                this.nextRound();
             }
+        },
+        nextRound() {
+
         },
         endGame() {
             console.log('Game has ended');
-        }
+        },
     },
+    computed: {
+        nextTurn: function() {
+
+        }
+    }
 }
 </script>
