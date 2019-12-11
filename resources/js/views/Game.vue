@@ -1,6 +1,6 @@
 <template>
 <div>
-    
+    <show-round v-if="roundStarted" :answers="currentAnswers" :time="settings.timePerRound"></show-round>
 </div>
 </template>
 
@@ -29,7 +29,7 @@ export default {
                         'Hammer', 'Spin', 'Clap', 'Happy', 'Spoon', 'Cough', 'Horns', 'Stomp', 'Cry', 'Joke', 'Stop', 'Dog', 'Mime', 'Tail', 'Drink', 'Penguin', 'Toothbrush', 'Drums', 'Phone', 'Wiggle', 'Duck', 'Photographer'],
             currentTurn: null,
             currentAnswers: [],
-            gameStarted: false, //Indicated whether the game has started.
+            roundStarted: false, //Indicates whether a round is currently started.
         }
     },
     methods: {
@@ -38,7 +38,7 @@ export default {
 
             this.getNewAnswers();
 
-            this.gameStarted = true;
+            this.roundStarted = true;
         },
         getNewAnswers() {
             let i = 0;
@@ -60,7 +60,7 @@ export default {
             this.checkPoints();
         },
         checkPoints() {
-            if(this.teams.team1.currentPoints >= this.pointsToWin || this.teams.team2.currentPoints >= this.pointsToWin) {
+            if(this.teams.team1.currentPoints >= this.settings.pointsToWin || this.teams.team2.currentPoints >= this.settings.pointsToWin) {
                 this.endGame();
             } else {
                 this.nextRound();
@@ -71,7 +71,7 @@ export default {
 
             this.getNewAnswers();
 
-            this.gameStarted = true;
+            this.roundStarted = true;
         },
         nextTurn() {
             if(this.currentTurn === this.teams.team1) {
@@ -84,8 +84,5 @@ export default {
             console.log('Game has ended');
         },
     },
-    computed: {
-        
-    }
 }
 </script>
