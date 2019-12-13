@@ -242,6 +242,7 @@ __webpack_require__.r(__webpack_exports__);
       }
     },
     nextRound: function nextRound() {
+<<<<<<< HEAD
       this.currentTurn = this.nextTurn();
       this.getNewAnswers();
       this.roundStarted = true;
@@ -252,6 +253,9 @@ __webpack_require__.r(__webpack_exports__);
       } else {
         return this.teams.team1;
       }
+=======
+      console.log('Game has not ended yet');
+>>>>>>> development
     },
     endGame: function endGame() {
       console.log('Game has ended');
