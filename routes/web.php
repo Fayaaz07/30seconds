@@ -11,8 +11,4 @@
 |
 */
 
-Route::get('/', 'HomeController@index');
-
-Route::redirect('/home', '/');
-
-Auth::routes();
+Route::get('/{any}', 'GameController@index')->where('any', '.*');

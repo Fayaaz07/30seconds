@@ -1,8 +1,23 @@
+import Vue from 'vue'
+import VueRouter from 'vue-router'
+import routes from './routes'
 
-window.Vue = require('vue');
+//Load base view
+import App from './views/App'
 
-Vue.component('game', require('./components/Game.vue').default);
+//Loading components
+import Timer from './components/Timer'
+Vue.component('timer', Timer)
 
-const app = new Vue({
+import ShowRound from './components/ShowRound'
+Vue.component('show-round', ShowRound)
+
+Vue.use(VueRouter);
+
+let app = new Vue({
     el: '#game',
-});
+    router: new VueRouter(routes),
+    components: {
+        App
+    },
+})
