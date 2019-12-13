@@ -152,7 +152,7 @@ __webpack_require__.r(__webpack_exports__);
 
           _this.countDownTimer();
         }, 1000);
-      }
+      } else {}
     }
   },
   created: function created() {
@@ -222,7 +222,7 @@ __webpack_require__.r(__webpack_exports__);
       console.log(this.currentAnswers);
     },
     updatePoints: function updatePoints(team, points) {
-      gameStarted = false;
+      roundStarted = false;
 
       if (this.teams.team1.name === team.name) {
         this.teams.team1.currentPoints += points;

@@ -18,6 +18,8 @@ export default {
                     this.time -= 1
                     this.countDownTimer()
                 }, 1000)
+            } else {
+                
             }
         }
     },

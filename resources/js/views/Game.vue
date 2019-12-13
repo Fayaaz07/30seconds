@@ -48,7 +48,7 @@ export default {
             console.log(this.currentAnswers);
         },
         updatePoints(team, points) {
-            gameStarted = false;
+            roundStarted = false;
 
             if(this.teams.team1.name === team.name) {
                 this.teams.team1.currentPoints += points;
