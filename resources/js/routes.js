@@ -1,5 +1,7 @@
 import Home from './views/Home'
 import Game from './views/Game'
+import App from './views/App'
+
 
 export default {
     mode: 'history',
@@ -14,6 +16,10 @@ export default {
             name: 'game',
             component: Game
         },
-        
+        {
+            path: '/app',
+            name: 'app',
+            component: App
+        },
     ]
 }
