@@ -1,7 +1,8 @@
 <template>
-    <div class="container">
-        <p>Displays Content</p>
-    </div>
+<div>
+    <show-round v-if="roundStarted" :answers="currentAnswers" :time="settings.timePerRound"></show-round>
+    <button @click="endGame">Stop spel!</button>
+</div>
 </template>
 
 <script>
@@ -29,7 +30,7 @@ export default {
                         'Hammer', 'Spin', 'Clap', 'Happy', 'Spoon', 'Cough', 'Horns', 'Stomp', 'Cry', 'Joke', 'Stop', 'Dog', 'Mime', 'Tail', 'Drink', 'Penguin', 'Toothbrush', 'Drums', 'Phone', 'Wiggle', 'Duck', 'Photographer'],
             currentTurn: null,
             currentAnswers: [],
-            gameStarted: false, //Indicated whether the game has started.
+            roundStarted: false, //Indicates whether a round is currently started.
         }
     },
     methods: {
@@ -38,7 +39,7 @@ export default {
 
             this.getNewAnswers();   //  new words
 
-            this.gameStarted = true;    //  game started
+            this.roundStarted = true;
         },
         getNewAnswers() {
             let i = 0;
@@ -47,8 +48,8 @@ export default {
             }
             console.log(this.currentAnswers);   //  put these words in the console
         },
-        updatePoints(team, points) {    //  give team.name and points
-            gameStarted = false;    //  game paused
+        updatePoints(team, points) {
+            roundStarted = false;
 
             if(this.teams.team1.name === team.name) {   //  team1.name === currentTurn of team
                 this.teams.team1.currentPoints += points;
@@ -62,7 +63,7 @@ export default {
             this.checkPoints();
         },
         checkPoints() {
-            if(this.teams.team1.currentPoints >= this.pointsToWin || this.teams.team2.currentPoints >= this.pointsToWin) {  //  if a team does have more points than winning points, victory (game Ends)
+            if(this.teams.team1.currentPoints >= this.settings.pointsToWin || this.teams.team2.currentPoints >= this.settings.pointsToWin) {
                 this.endGame();
             } else {
                 this.nextRound();
@@ -73,7 +74,7 @@ export default {
 
             this.getNewAnswers();   //  new random words
 
-            this.gameStarted = true;    //  game continues
+            this.roundStarted = true;
         },
         nextTurn() {
             if(this.currentTurn === this.teams.team1) { //  if currentTeam === team1
@@ -83,14 +84,12 @@ export default {
             }
         },
         endGame() {
-            this.gameStarted = false;
-            console.log('Team1' + this.teams.team1.currentPoints);
-            console.log('Team2' + this.teams.team2.currentPoints);
-            console.log('Game has ended');
+            this.currentTurn = null;
+            this.roundStarted = false;
+
+            return "<ul><li>Team 1 : {{ this.teams.team1.currentPoints }} points</li><li>Team 2 : {{ this.teams.team2.currentPoints }} points</li></ul>";   //  Throw list element with points made of each team
+            return "<button v-bind:href='/'>Naar beginscherm</button>";     //  Button linking back to the home screen
         },
     },
-    computed: {
-        
-    }
 }
 </script>
